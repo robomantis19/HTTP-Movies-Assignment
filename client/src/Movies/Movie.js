@@ -5,7 +5,7 @@ export default class Movie extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movie: null
+      movie: undefined
     };
   }
   

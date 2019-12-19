@@ -73,9 +73,15 @@ const UpdateMovie = (props) => {
         axios.put(`http://localhost:5000/api/movies/${form.id}`, form)
         .then(res => { 
             console.log('put response', res);
-
-            props.history.push('/movies')
         })
+        props.history.push('/')
+    }
+    const handleDelete = e => { 
+        axios.delete(`http://localhost:5000/api/movies/${form.id}`)
+        .then(res => { 
+            console.log('put response', res);
+        })
+        props.history.push('/')
     }
 
     return (
@@ -113,7 +119,9 @@ const UpdateMovie = (props) => {
                     onChange = {handleChange}
                     placeholder='title'
                     />
-                    <button>Submit</button>
+                    <button style={{backgroundColor: `blue`, color: `white`, margin: `auto`, width: `80px`, height: `30px`}}>Edit</button>
+                    <button onClick={handleDelete} style={{backgroundColor: `red`, color: `white`, margin: `auto`, width: `80px`, height: `30px`}}>Delete</button>
+
                 </form>
                 </div>
             </Div>
