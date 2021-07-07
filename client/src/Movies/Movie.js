@@ -5,9 +5,10 @@ export default class Movie extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movie: null
+      movie: undefined
     };
   }
+  
 
   componentDidMount() {
     this.fetchMovie(this.props.match.params.id);
@@ -30,6 +31,15 @@ export default class Movie extends React.Component {
     const addToSavedList = this.props.addToSavedList;
     addToSavedList(this.state.movie);
   };
+  
+  toUpdate = (e) => { 
+    e.preventDefault();
+    if (this.state.movie.id) {
+      this.props.history.push(`/update-movie/${this.state.movie.id}`);
+      this.props.setMovies(this.state.movie)
+    }
+    
+  }
 
   render() {
     if (!this.state.movie) {
@@ -42,6 +52,7 @@ export default class Movie extends React.Component {
         <div className="save-button" onClick={this.saveMovie}>
           Save
         </div>
+        <button style={{marginTop: `100px`}} className="save-button" onClick={this.toUpdate} > Update </button>
       </div>
     );
   }
